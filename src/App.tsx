@@ -3,9 +3,8 @@ import { css } from "../styled-system/css";
 function App() {
   return (
     <>
-      <div className={css({ fontSize: "2xl", fontWeight: "bold" })}>Hello 🐼!</div>
-      <form className={css({ textAlign: "left", background: "gray.50", width: "1/4", margin: "0 auto", padding: "4" })}>
-        <h2 className={css({ textAlign: "center", fontSize: "2xl", fontWeight: "bold" })}>Form</h2>
+      <form className={css({ textAlign: "left", background: "gray.50", lg: { width: "1/4", margin: "0 auto" }, margin: "6", padding: "4" })}>
+        <p className={css({ textAlign: "center", fontSize: "2xl", fontWeight: "bold" })}>Form</p>
         <ul>
           <li className={css({ marginTop: "5" })}>
             <label className={css({ marginRight: "5" })}>名前</label>
