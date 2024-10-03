@@ -1,9 +1,20 @@
+import { useForm, SubmitHandler } from "react-hook-form";
 import { css } from "../styled-system/css";
 
+type FormValues = {
+  name: string;
+  mail: string;
+  password: string;
+};
+
 function App() {
+  const { register, handleSubmit } = useForm<FormValues>();
+  const onsubmit: SubmitHandler<FormValues> = (data) => {
+    console.log(data);
+  };
   return (
     <>
-      <form className={css({ textAlign: "left", background: "gray.50", lg: { width: "1/4", margin: "0 auto" }, margin: "6", padding: "4" })}>
+      <form onSubmit={handleSubmit(onsubmit)} className={css({ textAlign: "left", background: "gray.50", lg: { width: "1/4", margin: "0 auto" }, margin: "6", padding: "4" })}>
         <p className={css({ textAlign: "center", fontSize: "2xl", fontWeight: "bold" })}>Form</p>
         <ul>
           <li className={css({ marginTop: "5" })}>
@@ -18,6 +29,7 @@ function App() {
                 width: "full",
                 _placeholder: { color: "gray.500" },
               })}
+              {...register("name", { required: "名前を入力してください" })}
             />
           </li>
           <li className={css({ marginTop: "5" })}>
@@ -32,6 +44,7 @@ function App() {
                 width: "full",
                 _placeholder: { color: "gray.500" },
               })}
+              {...register("mail", { required: "メールアドレスを入力してください" })}
             />
           </li>
           <li className={css({ marginTop: "5" })}>
@@ -46,9 +59,11 @@ function App() {
                 width: "full",
                 _placeholder: { color: "gray.500" },
               })}
+              {...register("password", { required: "パスワードを入力してください" })}
             />
           </li>
         </ul>
+        <button type="submit">送信</button>
       </form>
     </>
   );
