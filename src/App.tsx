@@ -11,14 +11,34 @@ function App() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<FormValues>({ mode: "onBlur" });
   const onsubmit: SubmitHandler<FormValues> = (data) => {
     console.log(data);
+    searchName();
+  };
+
+  const watchName = watch("name");
+  console.log(watchName);
+
+  const searchName = () => {
+    if (watchName === "taro") {
+      alert("taroです");
+    }
   };
   return (
     <>
-      <form onSubmit={handleSubmit(onsubmit)} className={css({ textAlign: "left", background: "gray.50", lg: { width: "1/4", margin: "0 auto" }, margin: "6", padding: "4" })}>
+      <form
+        onSubmit={handleSubmit(onsubmit)}
+        className={css({
+          textAlign: "left",
+          background: "gray.50",
+          lg: { width: "1/4", margin: "0 auto" },
+          margin: "6",
+          padding: "4",
+        })}
+      >
         <p className={css({ textAlign: "center", fontSize: "2xl", fontWeight: "bold" })}>Form</p>
         <ul>
           <li className={css({ marginTop: "5", fontWeight: "bold" })}>
@@ -82,7 +102,19 @@ function App() {
             )}
           </li>
         </ul>
-        <button type="submit" className={css({ background: "blue.400", color: "white", p: "4", width: "1/2", margin: "0 auto", display: "block", mt: "5", fontWeight: "bold" })}>
+        <button
+          type="submit"
+          className={css({
+            background: "blue.400",
+            color: "white",
+            p: "4",
+            width: "1/2",
+            margin: "0 auto",
+            display: "block",
+            mt: "5",
+            fontWeight: "bold",
+          })}
+        >
           送信
         </button>
       </form>
